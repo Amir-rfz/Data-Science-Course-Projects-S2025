@@ -70,7 +70,7 @@ def generate_transaction_event(is_historical=False, timestamp_override=None):
     commission_type = random.choice(COMMISSION_TYPES)
     commission_amount = int(amount * 0.02)
     vat_amount = int(amount * 0.09)
-    total_amount = amount + vat_amount
+    total_amount = amount + vat_amount + commission_amount
     event = {
         "transaction_id": transaction_id,
         "timestamp": event_time.isoformat() + "Z",
@@ -174,7 +174,7 @@ if __name__ == "__main__":
     declined_rate = float(os.getenv("DECLINED_RATE", 0.05))
     merchant_count = int(os.getenv("MERCHANT_COUNT", 50))
     customer_count = int(os.getenv("CUSTOMER_COUNT", 1000))
-    kafka_broker = os.getenv("KAFKA_BROKER", "kafka:9092")
+    kafka_broker = os.getenv("KAFKA_BROKER", "localhost:9092")
     topic = "darooghe.transactions"
     event_init_mode = os.getenv("EVENT_INIT_MODE", "flush").lower()
     skip_initial = False
