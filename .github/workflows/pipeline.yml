@@ -12,7 +12,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: Data-science-projects/Final_project/Phase2
+        working-directory: Final_project/Phase2
 
     steps:
     - uses: actions/checkout@v3
