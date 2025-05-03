@@ -10,7 +10,7 @@ jobs:
   run-pipeline:
     runs-on: ubuntu-latest
 
-    defaults:                  
+    defaults:
       run:
         working-directory: Data-science-projects/Final_project/Phase2
 
@@ -30,7 +30,7 @@ jobs:
       run: python pipeline.py
 
     - name: Upload features
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: features
         path: Data-science-projects/Final_project/Phase2/features/*
