@@ -1,6 +1,6 @@
 pandas
 numpy
-scikit‑learn>=1.3
+scikit-learn==1.4.2
 tabulate
 sqlite3; python_version < "3.10"
 
