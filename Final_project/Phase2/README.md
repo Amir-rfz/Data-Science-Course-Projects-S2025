@@ -11,7 +11,11 @@ This project processes and transforms data in a multi-step pipeline.
 5. `feature_eng.py`: Adds derived features.
 
 ## How to Run
-Execute the entire pipeline:
+1. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+
+2. Execute the entire pipeline:
     ```bash
     python pipeline.py
     ```

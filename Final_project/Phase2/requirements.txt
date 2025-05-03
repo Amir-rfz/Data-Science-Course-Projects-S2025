@@ -1,0 +1,6 @@
+pandas
+numpy
+sklearn
+tabulate
+sqlite3; python_version < "3.10"
+
