@@ -29,11 +29,9 @@ jobs:
     - name: Run pipeline
       run: python pipeline.py
 
-     - name: Upload features
-       uses: actions/upload-artifact@v4
-       with:
-         name: pipeline‑outputs
-         path: |
-           Final_project/Phase2/features/feature_eng.csv
-           Final_project/Phase2/processed/processed.csv
+    - name: Upload outputs
+      uses: actions/upload-artifact@v4
+      with:
+        name: final-outputs
+        path: Final_project/Phase2/final_outputs/*.csv
 
