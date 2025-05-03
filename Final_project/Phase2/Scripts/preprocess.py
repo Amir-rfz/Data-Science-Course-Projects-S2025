@@ -7,6 +7,27 @@ import pandas as pd
 
 def preprocess():
     flights = feature_eng()
+    
+    delay_cols = ['AIR_SYSTEM_DELAY', 'SECURITY_DELAY', 'AIRLINE_DELAY', 'LATE_AIRCRAFT_DELAY', 'WEATHER_DELAY']
+    flights[delay_cols] = flights[delay_cols].fillna(0)
+
+    delay_basic_cols = ['DEPARTURE_DELAY', 'ARRIVAL_DELAY']
+    flights[delay_basic_cols] = flights[delay_basic_cols].fillna(0)
+
+    time_cols = ['DEPARTURE_TIME', 'ARRIVAL_TIME', 'WHEELS_ON', 'WHEELS_OFF', 
+                'TAXI_OUT', 'TAXI_IN', 'ELAPSED_TIME', 'AIR_TIME']
+
+    for col in time_cols:
+        flights.loc[flights['CANCELLED'] == 1, col] = flights.loc[flights['CANCELLED'] == 1, col].fillna(-1)
+
+    for col in time_cols:
+        flights[col] = flights[col].fillna(flights[col].median())
+
+    cat_cols = ['AIRLINE', 'ORIGIN_AIRPORT', 'DESTINATION_AIRPORT']
+    flights[cat_cols] = flights[cat_cols].fillna('Unknown')
+
+    flights = flights.drop(columns=['CANCELLATION_REASON'], errors='ignore')
+
     num_feats = ['DISTANCE_KM', 'AIRLINE_7D_MEAN','DEP_HOUR','DELAY_PER_KM','DEPARTURE_DELAY', 'SCHEDULED_DEPARTURE',
                 'ARRIVAL_DELAY', 'TAXI_OUT', 'TAXI_IN', 'AIR_TIME', 'ELAPSED_TIME']
 

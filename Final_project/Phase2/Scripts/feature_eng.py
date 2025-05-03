@@ -1,5 +1,6 @@
 from load_data import load_data 
 import pandas as pd
+import numpy as np
 
 def feature_eng():
     flights, airports, airlines = load_data()
@@ -33,11 +34,8 @@ def feature_eng():
     labels = ['early_morning','morning','afternoon','evening']
     flights['DEP_TIME_BUCKET'] = pd.cut(flights['DEP_HOUR'], bins=bins, labels=labels, right=False)
 
-    import pyproj
-    import numpy as np
-
+    
     # Add distance column:
-    proj = pyproj.Proj(proj='latlong', datum='WGS84')
     def haversine(lat1, lon1, lat2, lon2):
         lat1, lon1, lat2, lon2 = map(np.radians, (lat1, lon1, lat2, lon2))
         dlat = lat2 - lat1
