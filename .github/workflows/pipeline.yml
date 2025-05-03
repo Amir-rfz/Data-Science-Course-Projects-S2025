@@ -29,8 +29,3 @@ jobs:
     - name: Run pipeline
       run: python pipeline.py
 
-    - name: Upload features
-      uses: actions/upload-artifact@v4
-      with:
-        name: features
-        path: Data-science-projects/Final_project/Phase2/features/*
