@@ -1,20 +1,13 @@
-# Scripts/create_database.py
 import sqlite3
 import pandas as pd
 import os
 
 def build_database(db_path, flights_csv, airports_csv, airlines_csv):
-    """
-    Creates the SQLite database, tables, and populates them with initial data.
-    """
-    # Ensure the Database directory exists
     os.makedirs(os.path.dirname(db_path), exist_ok=True)
-
     airports_df = pd.read_csv(airports_csv)
     airlines_df = pd.read_csv(airlines_csv)
     flights_df = pd.read_csv(flights_csv)
 
-    # Basic cleaning and selection
     airports_df = airports_df[["IATA_CODE", "AIRPORT", "CITY", "A_STATE",
                                "COUNTRY", "LATITUDE", "LONGITUDE"]].drop_duplicates()
     airlines_df = airlines_df[["IATA_CODE", "AIRLINE"]].drop_duplicates()
@@ -99,7 +92,7 @@ def build_database(db_path, flights_csv, airports_csv, airlines_csv):
         airlines_df.to_sql("airlines", con, if_exists="append", index=False)
         flights_df.to_sql("flights", con, if_exists="append", index=False)
         con.commit()
-        print(f"SQLite database built and populated at {db_path}")
+        print(f"SQLite database built at {db_path}")
     except Exception as e:
         print(f"Error populating tables: {e}")
         con.rollback()
@@ -107,11 +100,9 @@ def build_database(db_path, flights_csv, airports_csv, airlines_csv):
         con.close()
 
 if __name__ == '__main__':
-    # Define paths relative to the Scripts directory or use absolute paths
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # Get project root
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
     db_path = os.path.join(project_root, "Database/flight_data.db")
     flights_csv = os.path.join(project_root, "Dataset/flights.csv")
     airports_csv = os.path.join(project_root, "Dataset/airports.csv")
     airlines_csv = os.path.join(project_root, "Dataset/airlines.csv")
-
     build_database(db_path, flights_csv, airports_csv, airlines_csv)
