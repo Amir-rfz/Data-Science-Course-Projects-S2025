@@ -1,0 +1,15 @@
+artifact_uri: file:///home/amin/Documents/Uni/Term_6/Data_Science/Data-science-projects/Final_project/MLflow/Scripts/mlruns/349497759515317064/6618bd4a7bde40f7ab4eb02ab16b4625/artifacts
+end_time: 1749145928147
+entry_point_name: ''
+experiment_id: '349497759515317064'
+lifecycle_stage: active
+run_id: 6618bd4a7bde40f7ab4eb02ab16b4625
+run_name: Prediction_Run_20250605_212208
+run_uuid: 6618bd4a7bde40f7ab4eb02ab16b4625
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749145928031
+status: 3
+tags: []
+user_id: amin

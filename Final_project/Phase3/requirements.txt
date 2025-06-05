@@ -1,0 +1,9 @@
+pandas
+numpy
+scikit-learn==1.4.2
+tabulate
+sqlite3; python_version < "3.10"
+tensorflow
+mlflow
+matplotlib
+joblib

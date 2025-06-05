@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1749129678780
+current_stage: None
+description: null
+last_updated_timestamp: 1749129678780
+name: FlightDelayKerasModel
+run_id: 521160f6e5eb477c8e0097ef5561c7cb
+run_link: null
+source: file:///home/amin/Documents/Uni/Term_6/Data_Science/Data-science-projects/Final_project/MLflow/Scripts/mlruns/349497759515317064/521160f6e5eb477c8e0097ef5561c7cb/artifacts/keras_model
+status: READY
+status_message: null
+storage_location: file:///home/amin/Documents/Uni/Term_6/Data_Science/Data-science-projects/Final_project/MLflow/Scripts/mlruns/349497759515317064/521160f6e5eb477c8e0097ef5561c7cb/artifacts/keras_model
+user_id: null
+version: 2

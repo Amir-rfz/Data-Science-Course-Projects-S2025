@@ -68,9 +68,3 @@ def engineer_features(flights_df, airports_df, airlines_df):
     
     print("Feature engineering completed.")
     return flights
-
-if __name__ == '__main__':
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    db_path = os.path.join(project_root, "Database/flight_data.db")
-    flights_df, airports_df, airlines_df = load_data_from_db(db_path)
-    engineered_flights_df = engineer_features(flights_df, airports_df, airlines_df)
