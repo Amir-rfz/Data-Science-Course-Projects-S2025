@@ -7,7 +7,7 @@
   - [Assignment 2: Real Time Data Pipeline](#assignment-2-Real-Time-Data-Pipeline)
   - [Assignment 3: ML Modeling Showcase](#assignment-3-ML-Modeling-Showcase)
   - [Assignment 4: Deep Learning Applications](#assignment-4-Deep-Learning-Applications)
-  - [Assignment 5: Feature Engineering Techniques](#assignment-5-feature-engineering-techniques)
+  - [Assignment 5: Advanced Data Science](#assignment-5-Advanced-Data-Science)
   - [Project](#project)
     - [Phase 1: Data Collection](#phase-1-data-collection)
     - [Phase 2: Data Cleaning](#phase-2-data-cleaning)
@@ -37,9 +37,9 @@ This project is a comprehensive showcase of machine learning modeling, tackling 
 
 This capstone project demonstrates the application of deep learning across three different domains. It includes building a Multi-Layer Perceptron (MLP) to predict the outcomes of the FIFA World Cup 2022, developing a Convolutional Neural Network (CNN) for flower image classification, and implementing a Recurrent Neural Network (RNN/LSTM) to forecast Bitcoin prices. Each task covers the complete pipeline from data preprocessing and model architecture design to training and comprehensive evaluation.
 
-## Assignment 5: 
+## Assignment 5: Advanced Data Science
 
-
+This capstone project explores a diverse set of advanced topics in data science through four distinct, hands-on tasks. The project begins with semi-supervised and active learning to predict video game review scores from limited labeled text data. It then moves to natural language processing, building a semantic search engine for a Persian Q&A forum using modern embedding models and a vector database. The third task delves into the power of large language models (LLMs) for complex reasoning on the SWAG multiple-choice dataset. The final task covers computer vision, applying unsupervised clustering techniques for semantic segmentation of players in football images.
 
 ## Project
 
