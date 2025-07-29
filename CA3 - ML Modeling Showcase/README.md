@@ -1,100 +1,89 @@
-# Project 1: Applied Statistical Concepts in Data Science
+# Project 3: Machine Learning Modeling Showcase
 
 ## Project Overview
 
-This project explores fundamental statistical concepts through a series of three practical case studies. The goal is to build a strong foundation in data analysis, simulation, and statistical inference by applying theoretical knowledge to real-world datasets and scenarios. The project covers Monte Carlo simulation, confidence intervals, and hypothesis testing.
+This repository contains the solutions for three distinct machine learning challenges, each designed as a practical, hands-on project and hosted as a Kaggle competition. The project covers three core areas of machine learning: binary classification, regression, and recommendation systems. The primary focus is on the end-to-end machine learning workflow, from data exploration and feature engineering to model training, evaluation, and prediction.
+
+**Constraint:** Per the assignment guidelines, all solutions are implemented using traditional machine learning algorithms (e.g., Scikit-learn, XGBoost, LightGBM). Deep learning models are strictly prohibited.
 
 ---
 
-### Part 1: Roulette Simulation and Profit Analysis
+### Task 1: Cancer Patient Survival Prediction (Classification)
 
 #### Objective
 
-To analyze the dynamics of a simple betting strategy in the game of American roulette using Monte Carlo simulation. The primary goal is to understand the distribution of total and average earnings over a varying number of rounds and to see the Central Limit Theorem in action.
+To develop a binary classification model that accurately predicts the survival outcome for cancer patients. The model uses a rich dataset containing patient demographics, diagnostic information, and treatment histories to classify the `Survival_Status` as 'Alive' (1) or 'Deceased' (0).
 
 #### Methodology
 
-1.  **Game Simulation:** A Python function was developed to simulate playing `N` rounds of roulette, betting $1 on black each round. The function calculates the total earnings ($S_N$) after `N` rounds.
+1.  **Data Exploration & Preprocessing:** The initial phase involved a thorough analysis of the dataset. Key preprocessing steps included:
 
-2.  **Monte Carlo Analysis:** The simulation was run 100,000 times for different values of `N` (10, 25, 100, 1000) to study the distribution of both total earnings ($S_N$) and average earnings ($S_N/N$).
+    * Handling missing values in features like `Weight` and `Surgery_Date`.
 
-3.  **Theoretical vs. Simulated:** The theoretical expected values and standard errors were calculated and compared against the results obtained from the simulation to validate the model.
+    * Converting date columns (`Birth_Date`, `Diagnosis_Date`) into more useful features, such as `Age_at_Diagnosis`.
 
-4.  **Central Limit Theorem (CLT):** The CLT was used to approximate the probability of the casino losing money for `N=25` rounds, and this was verified using the simulation results. The analysis was extended to show how this probability changes as `N` increases.
+    * Applying one-hot encoding to categorical features like `Cancer_Type`, `Occupation`, and `Insurance_Type`.
 
-#### Key Concepts Demonstrated
+    * Scaling numerical features to ensure they are on a comparable scale.
 
-* Monte Carlo Simulation
+2.  **Feature Engineering:** New features were created to capture more predictive signals. For example, the duration between diagnosis and surgery was calculated as a potential indicator of outcome.
 
-* Probability Distributions
+3.  **Model Selection & Training:** Several classification algorithms were evaluated, including Logistic Regression, Random Forest, and Gradient Boosting models (XGBoost, LightGBM). Models were trained and fine-tuned using cross-validation to prevent overfitting.
 
-* Expected Value and Standard Error
+4.  **Evaluation:** The primary metric for the Kaggle competition is **Accuracy**. However, during development, a comprehensive evaluation was performed using **Precision, Recall, and F1-Score** to understand the model's performance in correctly identifying each class.
 
-* Central Limit Theorem (CLT)
+* **Kaggle Competition Link:** [Task 1 - Classification](https://www.kaggle.com/competitions/ds-ca-3-q-1/leaderboard) (1'st rank)
 
 ---
 
-### Part 2: Predicting the 2016 US Presidential Election
+### Task 2: Daily Bike Rental Prediction (Regression)
 
 #### Objective
 
-To analyze polling data from the 2016 U.S. presidential election between Donald Trump and Hillary Clinton. This part focuses on aggregating data from multiple polls to derive more precise estimates, calculate confidence intervals, and visualize trends over time.
+To build a regression model that predicts the total number of daily bike rentals (`total_users`). The prediction is based on a dataset containing seasonal information, weather conditions, and calendar details.
 
 #### Methodology
 
-1.  **Data Cleaning:** Loaded the `2016-general-election-trump-vs-clinton.csv` dataset and filtered out irrelevant rows and columns.
+1.  **Data Exploration & Preprocessing:** The dataset was analyzed to understand the relationships between features and bike rental counts.
 
-2.  **Confidence Intervals:** Derived and computed the 95% confidence interval for the true proportion of voters supporting a candidate.
+    * Date features were expanded to include day of the week, month, and year as distinct features.
 
-3.  **Time-Series Visualization:** Plotted the poll results over time for both candidates, including a smoothed trend line to better visualize shifts in support.
+    * Categorical features like `weather_condition` were encoded.
 
-4.  **Data Aggregation:** Aggregated the results from all polls to calculate the overall estimated proportion of voters for each candidate and the corresponding 95% confidence intervals.
+    * Numerical features such as `temperature`, `humidity`, and `wind_speed` were scaled.
 
-5.  **Hypothesis Testing:** Defined the "spread" ($d = p_{Clinton} - p_{Trump}$) and performed a hypothesis test to determine if the observed spread was statistically different from zero.
+2.  **Feature Selection:** To improve model performance and reduce noise, feature selection techniques were applied. This included analyzing feature correlation with the target variable and using statistical tests (like p-values) to identify the most significant predictors.
 
-#### Key Concepts Demonstrated
+3.  **Model Selection & Training:** A variety of regression algorithms were tested, such as Linear Regression, Decision Trees, Random Forest, and Gradient Boosting Regressors. Hyperparameter tuning was performed to optimize the best-performing model.
 
-* Confidence Intervals
+4.  **Evaluation:** The Kaggle competition is ranked based on **Mean Squared Error (MSE)**. For a more complete analysis during development, **Root Mean Squared Error (RMSE)**, **Mean Absolute Error (MAE)**, and **R-Squared ($R^2$)** were also calculated to assess model fit and error magnitude.
 
-* Data Aggregation
-
-* Time-Series Analysis
-
-* Hypothesis Testing (z-test)
-
-* Standard Error of the Proportion
+* **Kaggle Competition Link:** [Task 2 - Regression](https://www.kaggle.com/competitions/ds-ca-3-q-2) (12'st rank)
 
 ---
 
-### Part 3: Drug Safety Trial Analysis
+### Task 3: Movie Rating Prediction (Recommender System)
 
 #### Objective
 
-To determine if a new drug has a statistically significant effect on patients compared to a placebo. This was achieved by analyzing a dataset from a randomized controlled drug trial and performing hypothesis tests on key biological markers.
+To design and build a collaborative filtering recommendation system that predicts the rating a user would give to a movie they have not yet seen.
 
 #### Methodology
 
-1.  **Data Preparation:** Loaded the `drug_safety.csv` dataset and performed necessary cleaning, including handling missing values and transforming categorical columns for numerical analysis.
+1.  **Data Exploration:** The project utilized two datasets: one with user-movie ratings and another with user-user trust relationships. The data was explored to understand rating distributions and the structure of the user trust network.
 
-2.  **Exploratory Data Analysis (EDA):** Grouped the data by treatment type ('Drug' vs. 'Placebo') and calculated summary statistics for white blood cell count (WBC), red blood cell count (RBC), and the number of adverse effects.
+2.  **Model Development:** A collaborative filtering approach was implemented. This could involve techniques like:
 
-3.  **Hypothesis Testing:** For each key metric (mean WBC, mean RBC, etc.), an independent two-sample t-test was performed.
+    * **Matrix Factorization:** Using algorithms like Singular Value Decomposition (SVD) to decompose the user-item interaction matrix into latent factors for users and items.
 
-    * **Null Hypothesis ($H_0$):** There is no significant difference in the mean of the metric between the Drug and Placebo groups.
+    * **Neighborhood-based Methods:** Calculating user-user or item-item similarity to make predictions.
+    * The user trust data could be incorporated to weight the influence of "trusted" users more heavily in the predictions.
 
-    * **Alternative Hypothesis ($H_1$):** There is a significant difference.
+3.  **Training and Prediction:** The model was trained on the `train_data_movie_rate.csv` dataset. It was then used to predict the ratings for the user-item pairs listed in the `test_data.csv` file.
 
-4.  **Interpretation:** The resulting p-values were interpreted to either reject or fail to reject the null hypothesis for each test, based on a significance level ($\alpha$) of 0.05.
+4.  **Evaluation:** The model's performance was evaluated using standard recommendation system metrics like **Root Mean Squared Error (RMSE)** and **Mean Absolute Error (MAE)**.
 
-#### Key Concepts Demonstrated
-
-* Hypothesis Testing Framework
-
-* Independent Two-Sample T-test
-
-* P-value and Significance Level ($\alpha$)
-
-* Exploratory Data Analysis (EDA)
+* **Kaggle Competition Link:** [Task 3 - Recommendation](https://www.kaggle.com/competitions/ds-ca-3-q-3) (6'st rank)
 
 ---
 
@@ -102,55 +91,26 @@ To determine if a new drug has a statistically significant effect on patients co
 
 * **Language:** Python
 
-* **Libraries:**
-    * Pandas
-    * NumPy
-    * Matplotlib
-    * Seaborn
-    * SciPy
-    * Tabulate
+* **Core Libraries:** Pandas, NumPy, Scikit-learn
+
+* **Advanced ML Models:** XGBoost, LightGBM, CatBoost
+
+* **Visualization:** Matplotlib, Seaborn
 
 * **Environment:** Jupyter Notebook
 
 ### How to Run the Code
 
-To set up and run this project on your local machine, please follow these steps. It is highly recommended to use a virtual environment.
+Each task is contained within its own dedicated Jupyter Notebook.
 
-1.  **Clone the repository:**
+1.  **Clone the repository and navigate to the project folder.**
 
-    ```bash
-    git clone https://github.com/Amir-rfz/Data-Science-Course-Projects-S2025.git
-    cd Data-Science-Course-Projects-S2025/CA0 - Statistical Inference
-    ```
+2.  **Install Dependencies:**
 
-2.  **Create and activate a virtual environment:**
-
-    * **On Windows:**
-
-        ```bash
-        python -m venv venv
-        .\venv\Scripts\activate
-        ```
-
-    * **On macOS/Linux:**
-
-        ```bash
-        python3 -m venv venv
-        source venv/bin/activate
-        ```
-
-3.  **Install Dependencies:**
-
-    All required packages are listed in the `requirements.txt` file. Install them with the following command:
     ```bash
     pip install -r requirements.txt
     ```
 
-4.  **Launch Jupyter and Run:**
+3.  **Open the Jupyter Notebook** for the desired task (e.g., `Task1.ipynb`).
 
-    Start Jupyter Notebook from your terminal:
-    ```bash
-    jupyter notebook
-    ```
-    Navigate to the project's `.ipynb` file, open it, and run the cells sequentially to see the analysis.
-
+4.  **Run the cells sequentially.** The notebooks are structured to cover data loading, preprocessing, model training, evaluation, and finally, generating the `submission.csv` file in the format required by Kaggle.
