@@ -1,106 +1,130 @@
-# Project 4: Deep Learning Applications
+# Project 5 & 6: Advanced Topics in Data Science
 
 ## Project Overview
 
-This repository contains the solutions for a three-part assignment focused on applying core deep learning architectures to solve a variety of real-world problems. The project is divided into three distinct tasks:
+This repository contains the solutions for a final, multi-part assignment covering a range of advanced topics in modern data science. The project is designed to bridge the gap between traditional machine learning and the capabilities of foundation models, tackling challenges in natural language processing, computer vision, and low-resource learning environments.
 
-1.  **Tabular Data Prediction:** Using a Multi-Layer Perceptron (MLP) to predict football match outcomes.
+The project is divided into four main tasks:
 
-2.  **Image Classification:** Building a Convolutional Neural Network (CNN) to classify images of flowers.
+1.  **Semi-Supervised Learning:** Predicting video game review scores using a small labeled dataset and a large unlabeled dataset.
 
-3.  **Time-Series Forecasting:** Implementing a Recurrent Neural Network (RNN) to predict future Bitcoin prices.
+2.  **Semantic Search:** Building a semantic search engine for a Persian-language Q&A forum.
 
-Each task is self-contained and demonstrates the end-to-end process of data preparation, model design, training, and evaluation using the PyTorch framework.
+3.  **Large Language Models:** Using LLMs for complex multiple-choice reasoning on the SWAG dataset.
 
-### Task 1: MLP for FIFA World Cup Prediction
+4.  **Unsupervised Image Segmentation:** Applying clustering methods to segment football players from images.
+
+---
+
+### Task 1: Semi-Supervised Learning for Video Game Reviews
 
 #### Objective
-
-To build and train a Multi-Layer Perceptron (MLP) model to predict the outcome of international football matches. The model is trained on historical data from World Cup qualifiers and then used to simulate the entire FIFA World Cup 2022 tournament, from the group stage to the final.
+To predict numerical review scores (1-10) for video game summaries in a low-resource setting. The primary challenge is to effectively leverage a large pool of unlabeled text data to improve the performance of a model trained on a very small set of labeled data.
 
 #### Methodology
 
-1.  **Data Preparation:** The dataset of international matches was loaded. Features were selected to represent the statistical differences between the two competing teams (e.g., historical wins, goals scored, etc.), while team names were excluded to prevent the model from learning biases. The target variable (`status`: win, tie, loss) was label-encoded.
+1.  **Text Vectorization:** Review summaries were converted into numerical embeddings using two methods:
 
-2.  **Preprocessing:** The data was split into training and testing sets. Numerical features were standardized using `StandardScaler`, which was fit *only* on the training data to prevent data leakage.
+    * **Sentence-Transformers:** Using the `all-MiniLM-L6-v2` model to generate dense, semantically rich sentence embeddings.
 
-3.  **MLP Architecture:** A flexible MLP was designed using PyTorch's `nn.Module`. The architecture consists of several fully connected (linear) layers with ReLU activation functions and dropout for regularization, outputting logits for the three possible outcomes.
+    * **Word2Vec:** Training a model on the entire text corpus and averaging word vectors to create sentence embeddings.
 
-4.  **Training & Evaluation:** The model was trained using the Cross-Entropy Loss criterion and the Adam optimizer. The training loop iterated for a set number of epochs, updating the model's weights to minimize the loss. The final model's performance was evaluated on the test set using accuracy.
+2.  **Supervised Baseline:** Baseline models (both classification and regression) were trained using only the small labeled dataset to establish initial performance benchmarks.
 
-5.  **World Cup Simulation:** The trained model was used to predict the outcome of each match in the FIFA World Cup 2022 group stage. The group standings were updated, and the top two teams from each group advanced to a simulated knockout stage until a final winner was predicted.
+3.  **Pseudo-Labeling (SSL):** The best baseline model was used to predict scores for the unlabeled data. High-confidence predictions were used as "pseudo-labels" to augment the training set, and the model was retrained.
 
-### Task 2: CNN for Flower Image Classification
+4.  **Active Learning:** An interactive learning loop was simulated. The model identified the most "uncertain" unlabeled samples, which were then "manually labeled" and added to the training set to iteratively improve the model with minimal labeling effort.
+
+5.  **Comparative Analysis:** The performance of the baseline, pseudo-labeling, and active learning models was compared using metrics like F1-score, MAE, and learning curves to evaluate the effectiveness of each strategy.
+
+---
+
+### Task 2: Semantic Search Engine for Persian Q&A
 
 #### Objective
-
-To build, train, and compare two Convolutional Neural Network (CNN) models for classifying flower images from a multi-class dataset: a VGG-style network built from scratch and a fine-tuned pre-trained ResNet model.
+To build a semantic search engine for the Persian-language NiniSite Q&A dataset. The goal was to move beyond simple keyword matching and retrieve answers that are semantically relevant to a user's query.
 
 #### Methodology
 
-1.  **Dataset & Preprocessing:** The flower image dataset was loaded and split into training, validation, and test sets. All images were resized to 224x224 pixels and normalized.
+1.  **Persian Text Preprocessing:** A comprehensive cleaning pipeline was applied to the informal Persian text, including character normalization, stopword removal, and lemmatization using the `hazm` library.
 
-2.  **Data Augmentation:** To improve model generalization, random transformations (rotations, horizontal flips, and color jitter) were applied to the training dataset only.
+2.  **Embedding Model:** The multilingual `bge-m3` model was used to generate dense vector embeddings for all questions in the dataset, capturing their semantic meaning.
 
-3.  **VGG-Style CNN from Scratch:** A custom CNN inspired by the VGG architecture was implemented. It features multiple blocks of stacked 3x3 convolutional layers followed by max-pooling layers, and a final classifier head with fully connected layers.
+3.  **Vector Database:** `LanceDB` was used as a vector database to store the question text and their corresponding embeddings. LanceDB's ability to use a custom embedding function allowed for seamless integration.
 
-4.  **Fine-Tuning Pre-trained ResNet:** A pre-trained ResNet50 model was used. Fine-tuning was performed in stages:
+4.  **Semantic & Full-Text Search:** The system was tested using both semantic (vector) search and traditional full-text search. The relevance of the results from both methods was manually evaluated and compared.
 
-    * First, only the final classification layer (the "head") was trained while the convolutional base was frozen.
+5.  **Answer Reranking (Bonus):** A `bge-reranker` model was applied to the top results from the semantic search to further refine the answer rankings based on a more precise (question, answer) pair evaluation.
 
-    * Next, the last few layers of the convolutional base were unfrozen and trained with a low learning rate.
+---
 
-    * Finally, the entire network was trained with a very low learning rate.
-
-5.  **Evaluation:** Both models were evaluated on the test set. Performance was compared using **Accuracy, Precision, Recall, F1-Score,** and the **Area Under the ROC Curve (AUC)**. Confusion matrices were also plotted for detailed error analysis.
-
-### Task 3: RNN for Bitcoin Price Forecasting
+### Task 3: LLMs for Commonsense Reasoning (SWAG)
 
 #### Objective
-
-To develop a Recurrent Neural Network (RNN) to predict future Bitcoin prices based on historical OHLCV (Open, High, Low, Close, Volume) data. The project also explores using a Long Short-Term Memory (LSTM) network for comparison.
+To explore the capabilities of Large Language Models (LLMs) on a complex reasoning task that is challenging for traditional models. The SWAG dataset, a collection of multiple-choice questions about real-world scenarios, was used for this purpose.
 
 #### Methodology
 
-1.  **Data Exploration & Feature Engineering:** Historical Bitcoin data was loaded and analyzed. A custom target variable indicating potential profit/loss was engineered from the OHLCV features.
+1.  **Baseline Evaluation:** A pre-trained BERT model (`bert-base-uncased`) was loaded and evaluated on the SWAG validation set in a zero-shot setting to establish a baseline.
 
-2.  **Sequence Creation:** The time-series data was transformed into input sequences and corresponding targets. A lookback window (e.g., 60 days) was used to create sequences of historical data to predict the target for the next time step.
+2.  **In-Context Learning (ICL):** Few-shot learning was applied by formatting the input prompt to include several example question-answer pairs. The model's performance was evaluated to see if it could learn the task from context without any weight updates.
 
-3.  **RNN/LSTM Architecture:** An RNN model was built with recurrent layers followed by fully connected layers to produce a single regression output. An optional, more advanced LSTM-based model was also implemented to better capture long-term dependencies. Dropout was used for regularization.
+3.  **Fine-Tuning with LoRA:** The BERT model was fine-tuned on the SWAG training set using Low-Rank Adaptation (LoRA), a parameter-efficient fine-tuning technique. This adapts the model to the specific task while keeping most of its original weights frozen.
 
-4.  **Training & Evaluation:** The models were trained to minimize a regression loss function like Mean Squared Error (MSE). The performance was evaluated on a held-out test set using several metrics:
+4.  **Combined Approach (Bonus):** The fine-tuned model was tested again using the same ICL prompt structure to see if combining fine-tuning with in-context examples provided any additional performance benefits.
 
-    * **MSE, RMSE, MAE:** To measure the magnitude of the prediction error.
+5.  **Comprehensive Evaluation:** Performance across all approaches was measured using accuracy and perplexity, and the results were compared to analyze the effectiveness of each method.
 
-    * **Mean Absolute Percentage Error (MAPE):** To express the error as a percentage.
+---
 
-    * **Cumulative Error (CE):** To assess the model's overall prediction bias.
+### Task 4: Unsupervised Image Segmentation with Clustering
 
-5.  **Visualization:** The predicted values were plotted against the actual values over time to visually assess the model's ability to capture trends and turning points.
+#### Objective
+To perform semantic segmentation on images of football players using unsupervised clustering methods. The goal was to automatically generate segmentation masks that separate players from the background without relying on pre-labeled data.
+
+#### Methodology
+
+1.  **Feature Creation:** Images were downscaled to a manageable size. Pixel features were engineered for clustering. This included simple features like RGB color values and more complex ones combining color with spatial information (pixel coordinates).
+
+2.  **Pixel Clustering:** Various clustering algorithms (K-Means, DBSCAN, Agglomerative Clustering) were applied to the pixel features. Hyperparameters (like the number of clusters `k` for K-Means) were tuned using metrics like the Silhouette score.
+
+3.  **Filtering and Merging:** The resulting clusters were post-processed. Small, noisy clusters were filtered out, and adjacent clusters likely belonging to the same player were merged to form more coherent segments.
+
+4.  **Binary Mask Generation:** The final clusters were used to create a binary segmentation mask, where pixels belonging to players were labeled `1` and background pixels were labeled `0`.
+
+5.  **Evaluation:** The generated masks were compared against the ground-truth annotations provided. The quality of the segmentation was quantitatively measured using the **Intersection over Union (IoU)** and **Dice Coefficient** metrics.
+
+---
+
+### Technologies Used
+
+* **Core Libraries:** Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
+
+* **NLP & Embeddings:** Sentence-Transformers, Gensim, `hazm`, Hugging Face `transformers`, `datasets`
+
+* **Vector Database:** LanceDB
+
+* **Deep Learning:** PyTorch, TensorFlow
+
+* **Computer Vision:** OpenCV (for image processing)
+
+* **Utilities:** `tqdm`, `missingno`, `persian-reshaper`, `python-bidi`
 
 ### How to Run the Code
 
-Each task is contained within its own dedicated Jupyter Notebook. To run the code and reproduce the results, please follow these steps:
+Each of the four tasks is self-contained in its own Jupyter Notebook.
 
 1.  **Install Dependencies:**
 
-    First, ensure you have a Python environment set up. It is highly recommended to use a virtual environment. Install all the required packages using the `requirements.txt` file provided with this project:
+    First, set up a Python environment (a virtual environment is recommended). Install all required packages using the `requirements.txt` file:
     ```bash
     pip install -r requirements.txt
     ```
 
 2.  **Run the Notebooks:**
-    For each task, open the corresponding Jupyter Notebook (e.g., `World-cup.ipynb`, `flower_classification.ipynb`, `Final_RNN_DS.ipynb`).
+
+    Navigate to the project folder and open the Jupyter Notebook for the task you wish to run (e.g., `Task_1_SSL.ipynb`, `Task_2_Semantic_Search.ipynb`, etc.).
 
 3.  **Execute Cells:**
-    Run the cells in each notebook sequentially from top to bottom. The notebooks are designed to be self-contained and will handle data loading, preprocessing, model training, and evaluation for that specific task.
 
-### Technologies Used
-
-* **Framework:** PyTorch
-
-* **Core Libraries:** Pandas, NumPy, Scikit-learn
-
-* **Visualization:** Matplotlib, Seaborn
-
-* **Environment:** Jupyter Notebook, Google Colab (for GPU access)
+    Run the cells in each notebook sequentially. They are designed to handle all steps from data loading and preprocessing to model training and evaluation for that specific task.
