@@ -9,9 +9,9 @@
   - [Assignment 4: Deep Learning Applications](#assignment-4-Deep-Learning-Applications)
   - [Assignment 5: Advanced Data Science](#assignment-5-Advanced-Data-Science)
   - [Project](#project)
-    - [Phase 1: Data Collection](#phase-1-data-collection)
-    - [Phase 2: Data Cleaning](#phase-2-data-cleaning)
-    - [Phase 3: Regression Analysis](#phase-3-regression-analysis)
+    - [Phase 1: Data Exploration and Storytelling](#phase-1-Data-Exploration-and-Storytelling)
+    - [Phase 2: Data Engineering and Pipeline](#phase-2-Data-Engineering-and-Pipeline)
+    - [Phase 3: Modeling and Pipeline Integration](#phase-3-Modeling-and-Pipeline-Integration)
 
 ## Intro
 
@@ -41,16 +41,16 @@ This capstone project demonstrates the application of deep learning across three
 
 This capstone project explores a diverse set of advanced topics in data science through four distinct, hands-on tasks. The project begins with semi-supervised and active learning to predict video game review scores from limited labeled text data. It then moves to natural language processing, building a semantic search engine for a Persian Q&A forum using modern embedding models and a vector database. The third task delves into the power of large language models (LLMs) for complex reasoning on the SWAG multiple-choice dataset. The final task covers computer vision, applying unsupervised clustering techniques for semantic segmentation of players in football images.
 
-## Project
+## Final Project
 
-### Phase 1: Data Collection
+### Phase 1: Data Exploration and Storytelling
 
-For this phase we chose to scrape [We Buy Car](https://www.webuycars.co.za/buy-a-car) website to gather data about the cars they have for sale. The gathered data includes the car's make, model, year, price, and much more.
+In this initial phase of our project, we focused on understanding the key drivers of flight delays using the "[2015 Flight Delays and Cancellations](https://www.kaggle.com/datasets/usdot/flight-delays)" dataset. We conducted a comprehensive exploratory data analysis (EDA) to investigate the relationships between various factors—such as airline, origin and destination airports, day of the week, and time of day—and the likelihood and duration of delays. The insights gathered were then used to create a data story in Power BI, visualizing significant trends and patterns to build a foundational understanding of the problem before moving to the data processing and modeling stages.
 
-### Phase 2: Data Cleaning
+### Phase 2: Data Engineering and Pipeline
 
-In this phase we cleaned the data we gathered in the previous phase. We removed any duplicates, missing values, and outliers. We also converted the data into a format that is suitable for analysis. We also performed some exploratory data analysis to gain some insights about the data.
+In this second phase, we built the engineering foundation for our flight delay prediction project. We began by designing a relational database schema and migrating our cleaned dataset into an SQLite database. Building on the insights from Phase 1, we then executed an advanced feature engineering and preprocessing workflow, creating new variables such as time-of-day categories and handling missing values systematically. This entire process was automated into a modular data pipeline using a series of Python scripts. To complete the phase, we implemented a CI/CD workflow with GitHub Actions, ensuring that our data pipeline is automatically tested and executed upon every code change, establishing a robust and reproducible process for the final modeling stage.
 
-### Phase 3: Regression Analysis
+### Phase 3: Modeling and Pipeline Integration
 
-In this phase we used the cleaned data to train a regression model to predict the price of the cars. We used different regression techniques such as Neural Networks, SVM, Decision Tree, and other methods as well. We also used different feature engineering techniques to improve the performance of the model. Finally, we evaluated the performance of the model using different evaluation metrics such as the $R^2$ score and the Mean Squared Error (MSE).
+In this conclusive phase, we developed and evaluated machine learning models to predict flight delays using the features engineered in Phase 2. We experimented with several algorithms, treating the problem as both a classification task (predicting if a delay will occur) and a regression task (predicting the delay duration), ultimately selecting a Multi-Layer Perceptron (MLP) model for its superior performance. After rigorous evaluation using metrics such as F1-Score and Mean Absolute Error (MAE), the final trained model was integrated back into our automated pipeline. This created a complete, end-to-end system capable of automatically training the model and making new predictions, which are then saved back to the database for analysis.
