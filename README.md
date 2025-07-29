@@ -3,7 +3,7 @@
 - [Data-Science-Course-Projects-S2024](#data-science-course-projects-s2025)
   - [Intro](#intro)
   - [Assignment 0: Statistical Inference](#assignment-0-Statistical-Inference)
-  - [Assignment 1: ](#assignment-1-Sampling-and-Data-Storytelling)
+  - [Assignment 1: Sampling and Data Storytelling](#assignment-1-Sampling-and-Data-Storytelling)
   - [Assignment 2: ](#assignment-2-investigating-open-ended-questions)
   - [Assignment 3: ](#assignment-3-spotify-dataset-analysis)
   - [Assignment 4: ](#assignment-4-loss-functions-and-regression)
