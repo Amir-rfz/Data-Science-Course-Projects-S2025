@@ -1,0 +1,8 @@
+confluent-kafka
+pyspark
+pymongo
+pandas
+matplotlib
+seaborn
+plotly
+prometheus-client
