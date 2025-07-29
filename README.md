@@ -5,7 +5,7 @@
   - [Assignment 0: Statistical Inference](#assignment-0-Statistical-Inference)
   - [Assignment 1: Sampling and Data Storytelling](#assignment-1-Sampling-and-Data-Storytelling)
   - [Assignment 2: Real Time Data Pipeline](#assignment-2-Real-Time-Data-Pipeline)
-  - [Assignment 3: ](#assignment-3-spotify-dataset-analysis)
+  - [Assignment 3: ML Modeling Showcase](#assignment-3-ML-Modeling-Showcase)
   - [Assignment 4: ](#assignment-4-loss-functions-and-regression)
   - [Assignment 5: Feature Engineering Techniques](#assignment-5-feature-engineering-techniques)
   - [Project](#project)
@@ -29,9 +29,9 @@ This project combines advanced statistical simulation with practical data storyt
 
 This project involves designing and implementing a comprehensive, real-time data pipeline to process payment transactions for a fictional provider, "Darooghe." The architecture uses Apache Kafka for high-throughput data ingestion, Apache Spark for both batch and real-time stream processing, and MongoDB for data storage. The pipeline is built to handle data validation, calculate commissions, analyze transaction patterns, detect fraudulent activities in real-time, and visualize key business intelligence insights.
 
-## Assignment 3: 
+## Assignment 3: ML Modeling Showcase
 
-
+This project is a comprehensive showcase of machine learning modeling, tackling three distinct challenges through Kaggle competitions: classification, regression, and recommendation. For the classification task, a model is built to predict the survival status of cancer patients. The regression task involves predicting the daily demand for bike rentals based on seasonal and weather-related features. Finally, a collaborative filtering recommendation system is developed to predict user ratings for movies. The emphasis across all tasks is on rigorous data preprocessing, feature engineering, and the application of traditional machine learning algorithms to solve real-world problems.
 
 ## Assignment 4: 
 
