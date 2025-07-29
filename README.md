@@ -3,7 +3,7 @@
 - [Data-Science-Course-Projects-S2024](#data-science-course-projects-s2025)
   - [Intro](#intro)
   - [Assignment 0: Statistical Inference](#assignment-0-Statistical-Inference)
-  - [Assignment 1: ](#assignment-1-statistics-analysis-tools)
+  - [Assignment 1: ](#assignment-1-Sampling-and-Data-Storytelling)
   - [Assignment 2: ](#assignment-2-investigating-open-ended-questions)
   - [Assignment 3: ](#assignment-3-spotify-dataset-analysis)
   - [Assignment 4: ](#assignment-4-loss-functions-and-regression)
@@ -21,9 +21,9 @@ This repository contains the assignments for the Data Science course at the Univ
 
 This project serves as a practical introduction to core statistical principles in data science. It is divided into three distinct case studies. The first part uses Monte Carlo simulation to analyze the profitability of betting in a game of roulette, exploring concepts like expected value, standard error, and the Central Limit Theorem. The second part delves into predictive analysis by aggregating polling data from the 2016 US Presidential Election to calculate confidence intervals and test hypotheses about the electoral spread. The final part applies hypothesis testing (specifically, independent t-tests) to a drug safety dataset to determine if there are statistically significant differences between a drug and a placebo group.
 
-## Assignment 1: 
+## Assignment 1: Sampling and Data Storytelling
 
-
+This project combines advanced statistical simulation with practical data storytelling. The first part involves a deep dive into computational statistics by implementing the Langevin Dynamics sampling algorithm from scratch to draw samples from a 2D Gaussian distribution, and then comparing the results to standard library functions. The second part shifts to data visualization, utilizing Tableau to clean, analyze, and present insights from Airbnb listing data through a series of three interactive dashboards, focusing on creating a compelling, data-driven narrative for a public audience.
 
 ## Assignment 2: 
 
