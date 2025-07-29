@@ -4,7 +4,7 @@
   - [Intro](#intro)
   - [Assignment 0: Statistical Inference](#assignment-0-Statistical-Inference)
   - [Assignment 1: Sampling and Data Storytelling](#assignment-1-Sampling-and-Data-Storytelling)
-  - [Assignment 2: Real_Time_Data_Pipeline](#assignment-2-Real-Time-Data-Pipeline)
+  - [Assignment 2: Real Time Data Pipeline](#assignment-2-Real-Time-Data-Pipeline)
   - [Assignment 3: ](#assignment-3-spotify-dataset-analysis)
   - [Assignment 4: ](#assignment-4-loss-functions-and-regression)
   - [Assignment 5: Feature Engineering Techniques](#assignment-5-feature-engineering-techniques)
