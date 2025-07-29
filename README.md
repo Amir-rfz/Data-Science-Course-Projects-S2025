@@ -4,7 +4,7 @@
   - [Intro](#intro)
   - [Assignment 0: Statistical Inference](#assignment-0-Statistical-Inference)
   - [Assignment 1: Sampling and Data Storytelling](#assignment-1-Sampling-and-Data-Storytelling)
-  - [Assignment 2: ](#assignment-2-investigating-open-ended-questions)
+  - [Assignment 2: Real_Time_Data_Pipeline](#assignment-2-Real-Time-Data-Pipeline)
   - [Assignment 3: ](#assignment-3-spotify-dataset-analysis)
   - [Assignment 4: ](#assignment-4-loss-functions-and-regression)
   - [Assignment 5: Feature Engineering Techniques](#assignment-5-feature-engineering-techniques)
@@ -25,9 +25,9 @@ This project serves as a practical introduction to core statistical principles i
 
 This project combines advanced statistical simulation with practical data storytelling. The first part involves a deep dive into computational statistics by implementing the Langevin Dynamics sampling algorithm from scratch to draw samples from a 2D Gaussian distribution, and then comparing the results to standard library functions. The second part shifts to data visualization, utilizing Tableau to clean, analyze, and present insights from Airbnb listing data through a series of three interactive dashboards, focusing on creating a compelling, data-driven narrative for a public audience.
 
-## Assignment 2: 
+## Assignment 2: Real Time Data Pipeline
 
-
+This project involves designing and implementing a comprehensive, real-time data pipeline to process payment transactions for a fictional provider, "Darooghe." The architecture uses Apache Kafka for high-throughput data ingestion, Apache Spark for both batch and real-time stream processing, and MongoDB for data storage. The pipeline is built to handle data validation, calculate commissions, analyze transaction patterns, detect fraudulent activities in real-time, and visualize key business intelligence insights.
 
 ## Assignment 3: 
 
