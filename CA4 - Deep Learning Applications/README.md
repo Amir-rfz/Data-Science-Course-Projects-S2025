@@ -1,116 +1,106 @@
-# Project 3: Machine Learning Modeling Showcase
+# Project 4: Deep Learning Applications
 
 ## Project Overview
 
-This repository contains the solutions for three distinct machine learning challenges, each designed as a practical, hands-on project and hosted as a Kaggle competition. The project covers three core areas of machine learning: binary classification, regression, and recommendation systems. The primary focus is on the end-to-end machine learning workflow, from data exploration and feature engineering to model training, evaluation, and prediction.
+This repository contains the solutions for a three-part assignment focused on applying core deep learning architectures to solve a variety of real-world problems. The project is divided into three distinct tasks:
 
-**Constraint:** Per the assignment guidelines, all solutions are implemented using traditional machine learning algorithms (e.g., Scikit-learn, XGBoost, LightGBM). Deep learning models are strictly prohibited.
+1.  **Tabular Data Prediction:** Using a Multi-Layer Perceptron (MLP) to predict football match outcomes.
 
----
+2.  **Image Classification:** Building a Convolutional Neural Network (CNN) to classify images of flowers.
 
-### Task 1: Cancer Patient Survival Prediction (Classification)
+3.  **Time-Series Forecasting:** Implementing a Recurrent Neural Network (RNN) to predict future Bitcoin prices.
 
-#### Objective
+Each task is self-contained and demonstrates the end-to-end process of data preparation, model design, training, and evaluation using the PyTorch framework.
 
-To develop a binary classification model that accurately predicts the survival outcome for cancer patients. The model uses a rich dataset containing patient demographics, diagnostic information, and treatment histories to classify the `Survival_Status` as 'Alive' (1) or 'Deceased' (0).
-
-#### Methodology
-
-1.  **Data Exploration & Preprocessing:** The initial phase involved a thorough analysis of the dataset. Key preprocessing steps included:
-
-    * Handling missing values in features like `Weight` and `Surgery_Date`.
-
-    * Converting date columns (`Birth_Date`, `Diagnosis_Date`) into more useful features, such as `Age_at_Diagnosis`.
-
-    * Applying one-hot encoding to categorical features like `Cancer_Type`, `Occupation`, and `Insurance_Type`.
-
-    * Scaling numerical features to ensure they are on a comparable scale.
-
-2.  **Feature Engineering:** New features were created to capture more predictive signals. For example, the duration between diagnosis and surgery was calculated as a potential indicator of outcome.
-
-3.  **Model Selection & Training:** Several classification algorithms were evaluated, including Logistic Regression, Random Forest, and Gradient Boosting models (XGBoost, LightGBM). Models were trained and fine-tuned using cross-validation to prevent overfitting.
-
-4.  **Evaluation:** The primary metric for the Kaggle competition is **Accuracy**. However, during development, a comprehensive evaluation was performed using **Precision, Recall, and F1-Score** to understand the model's performance in correctly identifying each class.
-
-* **Kaggle Competition Link:** [Task 1 - Classification](https://www.kaggle.com/competitions/ds-ca-3-q-1/leaderboard) (1'st rank)
-
----
-
-### Task 2: Daily Bike Rental Prediction (Regression)
+### Task 1: MLP for FIFA World Cup Prediction
 
 #### Objective
 
-To build a regression model that predicts the total number of daily bike rentals (`total_users`). The prediction is based on a dataset containing seasonal information, weather conditions, and calendar details.
+To build and train a Multi-Layer Perceptron (MLP) model to predict the outcome of international football matches. The model is trained on historical data from World Cup qualifiers and then used to simulate the entire FIFA World Cup 2022 tournament, from the group stage to the final.
 
 #### Methodology
 
-1.  **Data Exploration & Preprocessing:** The dataset was analyzed to understand the relationships between features and bike rental counts.
+1.  **Data Preparation:** The dataset of international matches was loaded. Features were selected to represent the statistical differences between the two competing teams (e.g., historical wins, goals scored, etc.), while team names were excluded to prevent the model from learning biases. The target variable (`status`: win, tie, loss) was label-encoded.
 
-    * Date features were expanded to include day of the week, month, and year as distinct features.
+2.  **Preprocessing:** The data was split into training and testing sets. Numerical features were standardized using `StandardScaler`, which was fit *only* on the training data to prevent data leakage.
 
-    * Categorical features like `weather_condition` were encoded.
+3.  **MLP Architecture:** A flexible MLP was designed using PyTorch's `nn.Module`. The architecture consists of several fully connected (linear) layers with ReLU activation functions and dropout for regularization, outputting logits for the three possible outcomes.
 
-    * Numerical features such as `temperature`, `humidity`, and `wind_speed` were scaled.
+4.  **Training & Evaluation:** The model was trained using the Cross-Entropy Loss criterion and the Adam optimizer. The training loop iterated for a set number of epochs, updating the model's weights to minimize the loss. The final model's performance was evaluated on the test set using accuracy.
 
-2.  **Feature Selection:** To improve model performance and reduce noise, feature selection techniques were applied. This included analyzing feature correlation with the target variable and using statistical tests (like p-values) to identify the most significant predictors.
+5.  **World Cup Simulation:** The trained model was used to predict the outcome of each match in the FIFA World Cup 2022 group stage. The group standings were updated, and the top two teams from each group advanced to a simulated knockout stage until a final winner was predicted.
 
-3.  **Model Selection & Training:** A variety of regression algorithms were tested, such as Linear Regression, Decision Trees, Random Forest, and Gradient Boosting Regressors. Hyperparameter tuning was performed to optimize the best-performing model.
-
-4.  **Evaluation:** The Kaggle competition is ranked based on **Mean Squared Error (MSE)**. For a more complete analysis during development, **Root Mean Squared Error (RMSE)**, **Mean Absolute Error (MAE)**, and **R-Squared ($R^2$)** were also calculated to assess model fit and error magnitude.
-
-* **Kaggle Competition Link:** [Task 2 - Regression](https://www.kaggle.com/competitions/ds-ca-3-q-2) (12'st rank)
-
----
-
-### Task 3: Movie Rating Prediction (Recommender System)
+### Task 2: CNN for Flower Image Classification
 
 #### Objective
 
-To design and build a collaborative filtering recommendation system that predicts the rating a user would give to a movie they have not yet seen.
+To build, train, and compare two Convolutional Neural Network (CNN) models for classifying flower images from a multi-class dataset: a VGG-style network built from scratch and a fine-tuned pre-trained ResNet model.
 
 #### Methodology
 
-1.  **Data Exploration:** The project utilized two datasets: one with user-movie ratings and another with user-user trust relationships. The data was explored to understand rating distributions and the structure of the user trust network.
+1.  **Dataset & Preprocessing:** The flower image dataset was loaded and split into training, validation, and test sets. All images were resized to 224x224 pixels and normalized.
 
-2.  **Model Development:** A collaborative filtering approach was implemented. This could involve techniques like:
+2.  **Data Augmentation:** To improve model generalization, random transformations (rotations, horizontal flips, and color jitter) were applied to the training dataset only.
 
-    * **Matrix Factorization:** Using algorithms like Singular Value Decomposition (SVD) to decompose the user-item interaction matrix into latent factors for users and items.
+3.  **VGG-Style CNN from Scratch:** A custom CNN inspired by the VGG architecture was implemented. It features multiple blocks of stacked 3x3 convolutional layers followed by max-pooling layers, and a final classifier head with fully connected layers.
 
-    * **Neighborhood-based Methods:** Calculating user-user or item-item similarity to make predictions.
-    * The user trust data could be incorporated to weight the influence of "trusted" users more heavily in the predictions.
+4.  **Fine-Tuning Pre-trained ResNet:** A pre-trained ResNet50 model was used. Fine-tuning was performed in stages:
 
-3.  **Training and Prediction:** The model was trained on the `train_data_movie_rate.csv` dataset. It was then used to predict the ratings for the user-item pairs listed in the `test_data.csv` file.
+    * First, only the final classification layer (the "head") was trained while the convolutional base was frozen.
 
-4.  **Evaluation:** The model's performance was evaluated using standard recommendation system metrics like **Root Mean Squared Error (RMSE)** and **Mean Absolute Error (MAE)**.
+    * Next, the last few layers of the convolutional base were unfrozen and trained with a low learning rate.
 
-* **Kaggle Competition Link:** [Task 3 - Recommendation](https://www.kaggle.com/competitions/ds-ca-3-q-3) (6'st rank)
+    * Finally, the entire network was trained with a very low learning rate.
 
----
+5.  **Evaluation:** Both models were evaluated on the test set. Performance was compared using **Accuracy, Precision, Recall, F1-Score,** and the **Area Under the ROC Curve (AUC)**. Confusion matrices were also plotted for detailed error analysis.
 
-### Technologies Used
+### Task 3: RNN for Bitcoin Price Forecasting
 
-* **Language:** Python
+#### Objective
 
-* **Core Libraries:** Pandas, NumPy, Scikit-learn
+To develop a Recurrent Neural Network (RNN) to predict future Bitcoin prices based on historical OHLCV (Open, High, Low, Close, Volume) data. The project also explores using a Long Short-Term Memory (LSTM) network for comparison.
 
-* **Advanced ML Models:** XGBoost, LightGBM, CatBoost
+#### Methodology
 
-* **Visualization:** Matplotlib, Seaborn
+1.  **Data Exploration & Feature Engineering:** Historical Bitcoin data was loaded and analyzed. A custom target variable indicating potential profit/loss was engineered from the OHLCV features.
 
-* **Environment:** Jupyter Notebook
+2.  **Sequence Creation:** The time-series data was transformed into input sequences and corresponding targets. A lookback window (e.g., 60 days) was used to create sequences of historical data to predict the target for the next time step.
+
+3.  **RNN/LSTM Architecture:** An RNN model was built with recurrent layers followed by fully connected layers to produce a single regression output. An optional, more advanced LSTM-based model was also implemented to better capture long-term dependencies. Dropout was used for regularization.
+
+4.  **Training & Evaluation:** The models were trained to minimize a regression loss function like Mean Squared Error (MSE). The performance was evaluated on a held-out test set using several metrics:
+
+    * **MSE, RMSE, MAE:** To measure the magnitude of the prediction error.
+
+    * **Mean Absolute Percentage Error (MAPE):** To express the error as a percentage.
+
+    * **Cumulative Error (CE):** To assess the model's overall prediction bias.
+
+5.  **Visualization:** The predicted values were plotted against the actual values over time to visually assess the model's ability to capture trends and turning points.
 
 ### How to Run the Code
 
-Each task is contained within its own dedicated Jupyter Notebook.
+Each task is contained within its own dedicated Jupyter Notebook. To run the code and reproduce the results, please follow these steps:
 
-1.  **Clone the repository and navigate to the project folder.**
+1.  **Install Dependencies:**
 
-2.  **Install Dependencies:**
-
+    First, ensure you have a Python environment set up. It is highly recommended to use a virtual environment. Install all the required packages using the `requirements.txt` file provided with this project:
     ```bash
     pip install -r requirements.txt
     ```
 
-3.  **Open the Jupyter Notebook** for the desired task (e.g., `Task1.ipynb`).
+2.  **Run the Notebooks:**
+    For each task, open the corresponding Jupyter Notebook (e.g., `World-cup.ipynb`, `flower_classification.ipynb`, `Final_RNN_DS.ipynb`).
 
-4.  **Run the cells sequentially.** The notebooks are structured to cover data loading, preprocessing, model training, evaluation, and finally, generating the `submission.csv` file in the format required by Kaggle.
+3.  **Execute Cells:**
+    Run the cells in each notebook sequentially from top to bottom. The notebooks are designed to be self-contained and will handle data loading, preprocessing, model training, and evaluation for that specific task.
+
+### Technologies Used
+
+* **Framework:** PyTorch
+
+* **Core Libraries:** Pandas, NumPy, Scikit-learn
+
+* **Visualization:** Matplotlib, Seaborn
+
+* **Environment:** Jupyter Notebook, Google Colab (for GPU access)
