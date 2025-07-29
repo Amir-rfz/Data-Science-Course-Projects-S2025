@@ -7,7 +7,7 @@
   - [Assignment 2: Real Time Data Pipeline](#assignment-2-Real-Time-Data-Pipeline)
   - [Assignment 3: ML Modeling Showcase](#assignment-3-ML-Modeling-Showcase)
   - [Assignment 4: Deep Learning Applications](#assignment-4-Deep-Learning-Applications)
-  - [Assignment 5,6: Advanced Data Science](#assignment-5-Advanced-Data-Science)
+  - [Assignment 5,6: Advanced Data Science](#assignment-5,6-Advanced-Data-Science)
   - [Final Project](#Final-Project)
     - [Phase 1: Data Exploration and Storytelling](#phase-1-Data-Exploration-and-Storytelling)
     - [Phase 2: Data Engineering and Pipeline](#phase-2-Data-Engineering-and-Pipeline)
