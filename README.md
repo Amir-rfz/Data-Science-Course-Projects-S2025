@@ -6,7 +6,7 @@
   - [Assignment 1: Sampling and Data Storytelling](#assignment-1-Sampling-and-Data-Storytelling)
   - [Assignment 2: Real Time Data Pipeline](#assignment-2-Real-Time-Data-Pipeline)
   - [Assignment 3: ML Modeling Showcase](#assignment-3-ML-Modeling-Showcase)
-  - [Assignment 4: ](#assignment-4-loss-functions-and-regression)
+  - [Assignment 4: Deep Learning Applications](#assignment-4-Deep-Learning-Applications)
   - [Assignment 5: Feature Engineering Techniques](#assignment-5-feature-engineering-techniques)
   - [Project](#project)
     - [Phase 1: Data Collection](#phase-1-data-collection)
@@ -33,9 +33,9 @@ This project involves designing and implementing a comprehensive, real-time data
 
 This project is a comprehensive showcase of machine learning modeling, tackling three distinct challenges through Kaggle competitions: classification, regression, and recommendation. For the classification task, a model is built to predict the survival status of cancer patients. The regression task involves predicting the daily demand for bike rentals based on seasonal and weather-related features. Finally, a collaborative filtering recommendation system is developed to predict user ratings for movies. The emphasis across all tasks is on rigorous data preprocessing, feature engineering, and the application of traditional machine learning algorithms to solve real-world problems.
 
-## Assignment 4: 
+## Assignment 4: Deep Learning Applications
 
-
+This capstone project demonstrates the application of deep learning across three different domains. It includes building a Multi-Layer Perceptron (MLP) to predict the outcomes of the FIFA World Cup 2022, developing a Convolutional Neural Network (CNN) for flower image classification, and implementing a Recurrent Neural Network (RNN/LSTM) to forecast Bitcoin prices. Each task covers the complete pipeline from data preprocessing and model architecture design to training and comprehensive evaluation.
 
 ## Assignment 5: 
 
